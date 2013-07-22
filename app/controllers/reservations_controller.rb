@@ -15,9 +15,8 @@ class ReservationsController < ApplicationController
     @reservation = rest.reservations.new(params[:reservation])
 
     if @reservation.save
-      OwnerMailer.reservation_email(@reservation).deliver
-    redirect_to(rest_reservation_path(rest, @reservation), :notice => "Reservation Created")
-
+       OwnerMailer.reservation_email(@reservation).deliver
+       redirect_to([@reservation.rest, @reservation], :notice => "Reservation Created")
   else
       render 'new'
     end
