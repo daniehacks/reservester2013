@@ -5,6 +5,6 @@ class OwnerMailer < ActionMailer::Base
   	@reservation = reservation
   	@owner_name = reservation.rest.owner.name
   	@owner_email = reservation.rest.owner.email
-  	mail(to: @owner_email, subject: 'Reservation Received')
+  	mail(to: @reservation.rest.owner.email, subject: 'A New Reservation Has Been Created')
   end
 end
